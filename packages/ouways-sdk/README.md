@@ -7,7 +7,7 @@ Arc network config, the StreamPay ABI, exact client-side stream math, and
 ## Install
 
 ```bash
-pnpm add github:adinas19986/rill#path:packages/ouways-sdk viem
+pnpm add github:Adinas01/rill#path:packages/ouways-sdk viem
 ```
 
 ## Create a stream

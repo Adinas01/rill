@@ -1,6 +1,6 @@
 # Rill
 
-[![CI](https://github.com/adinas19986/rill/actions/workflows/ci.yml/badge.svg)](https://github.com/adinas19986/rill/actions/workflows/ci.yml)
+[![CI](https://github.com/Adinas01/rill/actions/workflows/ci.yml/badge.svg)](https://github.com/Adinas01/rill/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97.svg)](LICENSE)
 
 Continuous USDC payment streams on Arc. Lock USDC once and it vests to the

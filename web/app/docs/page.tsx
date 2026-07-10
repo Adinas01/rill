@@ -67,7 +67,7 @@ export default function Docs() {
           </Section>
 
           <Section id="install" title="Install">
-            <Code>{`pnpm add github:adinas19986/rill#path:packages/ouways-sdk viem`}</Code>
+            <Code>{`pnpm add github:Adinas01/rill#path:packages/ouways-sdk viem`}</Code>
             <p>Set up viem clients against Arc:</p>
             <Code>{`import { createPublicClient, createWalletClient, http } from "viem";
 import { arcTestnet, defineArcChain } from "ouways-sdk";

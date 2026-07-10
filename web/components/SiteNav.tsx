@@ -8,7 +8,7 @@ const LINKS = [
   { label: "How it works", href: "/#how" },
   { label: "Use cases", href: "/#use-cases" },
   { label: "Docs", href: "/docs" },
-  { label: "GitHub", href: "https://github.com/adinas19986/rill", external: true },
+  { label: "GitHub", href: "https://github.com/Adinas01/rill", external: true },
 ];
 
 export function SiteNav() {

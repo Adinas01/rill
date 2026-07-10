@@ -144,7 +144,7 @@ export function SiteFooter({ streamPay }: { streamPay: string }) {
         </div>
         <div className="flex items-center gap-5 text-[13px] text-[var(--color-muted)]">
           <a href="/docs" className="font-semibold hover:text-[var(--color-ink)]">Docs</a>
-          <a href="https://github.com/adinas19986/rill" target="_blank" rel="noreferrer" className="font-semibold hover:text-[var(--color-ink)]">GitHub</a>
+          <a href="https://github.com/Adinas01/rill" target="_blank" rel="noreferrer" className="font-semibold hover:text-[var(--color-ink)]">GitHub</a>
           <span className="mono">StreamPay {short}</span>
         </div>
       </div>
