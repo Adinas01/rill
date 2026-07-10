@@ -6,7 +6,7 @@ import {
   streamedAt,
   withdrawableAt,
   type Stream,
-} from "../src/stream";
+} from "./stream";
 
 const base: Stream = {
   sender: "0x1111111111111111111111111111111111111111",

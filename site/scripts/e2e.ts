@@ -2,9 +2,9 @@
  * Real end-to-end run against the LIVE StreamPay deployment on Arc testnet.
  * Creates a short USDC stream, watches it vest, withdraws, then cancels.
  *
- *   node --import tsx packages/ouways-sdk/scripts/e2e.ts
+ *   pnpm e2e            # from site/, with PRIVATE_KEY in the environment
  *
- * Env: PRIVATE_KEY (from ../.env), a USDC-funded account on Arc.
+ * Env: PRIVATE_KEY, a USDC-funded account on Arc.
  */
 import { createPublicClient, createWalletClient, http, formatUnits, type Hex } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
@@ -16,8 +16,9 @@ import {
   cancelStream,
   readStream,
   streamedAt,
+  streamPayAbi,
   type StreamClientConfig,
-} from "../src/index.ts";
+} from "../lib/stream";
 
 const u6 = (n: bigint) => formatUnits(n, 6);
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
@@ -57,7 +58,7 @@ async function main() {
     await sleep(3000);
     const onchain = await publicClient.readContract({
       address: arcTestnet.streamPay,
-      abi: (await import("../src/abi.ts")).streamPayAbi,
+      abi: streamPayAbi,
       functionName: "streamedAmount",
       args: [streamId],
     });
@@ -67,7 +68,7 @@ async function main() {
 
   const vested = await publicClient.readContract({
     address: arcTestnet.streamPay,
-    abi: (await import("../src/abi.ts")).streamPayAbi,
+    abi: streamPayAbi,
     functionName: "withdrawableOf",
     args: [streamId],
   });

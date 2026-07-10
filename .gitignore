@@ -9,10 +9,10 @@ out/
 .claude/
 
 # foundry
-contracts/lib/
-contracts/out/
-contracts/cache/
-contracts/broadcast/
+contract/lib/
+contract/out/
+contract/cache/
+contract/broadcast/
 
 # build artifacts
 *.tsbuildinfo

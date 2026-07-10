@@ -1,6 +1,5 @@
 # Rill
 
-[![CI](https://github.com/Adinas01/rill/actions/workflows/ci.yml/badge.svg)](https://github.com/Adinas01/rill/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/license-MIT-3ddc97.svg)](LICENSE)
 
 Continuous USDC payment streams on Arc. Lock USDC once and it vests to the
@@ -25,9 +24,10 @@ exactly, so no dust is stranded by per-second rounding.
 ## Layout
 
 ```
-contracts/            Foundry: StreamPay.sol + tests + deploy script
-packages/ouways-sdk/  SDK: stream math, create/withdraw/cancel helpers (viem)
-web/                  Next.js app: open a stream, watch it vest live, withdraw
+contract/          Foundry: StreamPay.sol + tests + deploy script
+site/              Next.js app (Rill site + docs) and lib/stream, the
+                   network config, StreamPay ABI, and client + math helpers
+deployments/       recorded on-chain addresses
 ```
 
 ## Live deployment
@@ -43,14 +43,14 @@ Deployed and settling real streams on Arc testnet (chain `5042002`):
 ## Run
 
 ```bash
-# contracts (needs Foundry)
-cd contracts && forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts && forge test
+# contract (needs Foundry)
+cd contract && forge install foundry-rs/forge-std OpenZeppelin/openzeppelin-contracts && forge test
 
-# everything else (needs pnpm)
-pnpm install
-pnpm --filter ouways-sdk build
-pnpm web            # the app on :3000
+# app + stream helpers (needs pnpm)
+cd site && pnpm install
+pnpm dev            # the app on :3000
+pnpm test           # stream-math tests
 
-# a real end-to-end stream against the live deployment (PRIVATE_KEY in .env)
+# a real end-to-end stream against the live deployment (PRIVATE_KEY in env)
 pnpm e2e
 ```

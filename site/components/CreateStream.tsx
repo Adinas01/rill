@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useAccount, usePublicClient, useWalletClient } from "wagmi";
 import { parseUnits, isAddress, type Address } from "viem";
-import { createStream } from "ouways-sdk";
+import { createStream } from "@/lib/stream";
 import { net } from "@/lib/config";
 import { AlertCircle, ArrowRight, CheckCircle2, Loader2, Waves } from "lucide-react";
 

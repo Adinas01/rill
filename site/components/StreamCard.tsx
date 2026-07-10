@@ -11,7 +11,7 @@ import {
   withdraw,
   withdrawableAt,
   type Stream,
-} from "ouways-sdk";
+} from "@/lib/stream";
 import { net } from "@/lib/config";
 
 const fmt = (n: bigint) => Number(formatUnits(n, 6)).toFixed(4);

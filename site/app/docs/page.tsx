@@ -3,13 +3,13 @@ import { net } from "@/lib/config";
 
 export const metadata = {
   title: "Rill docs",
-  description: "How to use Rill: network, contract, and the ouways-sdk.",
+  description: "How to use Rill: network, the StreamPay contract, and the stream helpers.",
 };
 
 const NAV = [
   { id: "overview", label: "Overview" },
   { id: "network", label: "Network" },
-  { id: "install", label: "Install" },
+  { id: "integrate", label: "Integrate" },
   { id: "create", label: "Create a stream" },
   { id: "withdraw", label: "Withdraw & cancel" },
   { id: "math", label: "Stream math" },
@@ -66,11 +66,15 @@ export default function Docs() {
             <p>USDC is Arc&apos;s native asset; amounts are in base units (6 decimals), so <code>1000000</code> is 1 USDC.</p>
           </Section>
 
-          <Section id="install" title="Install">
-            <Code>{`pnpm add github:Adinas01/rill#path:packages/ouways-sdk viem`}</Code>
-            <p>Set up viem clients against Arc:</p>
+          <Section id="integrate" title="Integrate">
+            <p>
+              The stream helpers live in this repo at <code>site/lib/stream</code>
+              (network config, the StreamPay ABI, and typed client + math
+              functions). Copy that folder into your app, or call the contract
+              directly with viem and the address below. Set up clients against Arc:
+            </p>
             <Code>{`import { createPublicClient, createWalletClient, http } from "viem";
-import { arcTestnet, defineArcChain } from "ouways-sdk";
+import { arcTestnet, defineArcChain } from "@/lib/stream";
 
 const chain = defineArcChain(arcTestnet);
 const publicClient = createPublicClient({ chain, transport: http(arcTestnet.rpcUrl) });
@@ -79,7 +83,7 @@ const walletClient = createWalletClient({ chain, transport: http(arcTestnet.rpcU
 
           <Section id="create" title="Create a stream">
             <p>Approve (handled for you) and open a stream. Returns the new stream id.</p>
-            <Code>{`import { createStream, arcTestnet } from "ouways-sdk";
+            <Code>{`import { createStream, arcTestnet } from "@/lib/stream";
 
 const now = Math.floor(Date.now() / 1000);
 const { streamId } = await createStream(
@@ -94,7 +98,7 @@ const { streamId } = await createStream(
           </Section>
 
           <Section id="withdraw" title="Withdraw & cancel">
-            <Code>{`import { withdraw, cancelStream } from "ouways-sdk";
+            <Code>{`import { withdraw, cancelStream } from "@/lib/stream";
 
 // recipient pulls a specific amount of vested USDC
 await withdraw({ net: arcTestnet, publicClient, walletClient, account }, streamId, 500_000n);
@@ -108,7 +112,7 @@ await cancelStream({ net: arcTestnet, publicClient, walletClient, account }, str
               The SDK mirrors the contract exactly, so a UI can tick the streamed
               value locally without an RPC call per frame.
             </p>
-            <Code>{`import { readStream, streamedAt, withdrawableAt } from "ouways-sdk";
+            <Code>{`import { readStream, streamedAt, withdrawableAt } from "@/lib/stream";
 
 const stream = await readStream({ net: arcTestnet, publicClient }, streamId);
 const now = Date.now() / 1000;
